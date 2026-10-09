@@ -1,0 +1,13 @@
+# Lightweight, CPU-only validation environment (no model/Lean downloads).
+numpy==1.26.4
+PyYAML==6.0.3
+httpx==0.28.1
+openai==2.16.0
+fastapi==0.128.0
+tqdm==4.67.2
+pytest==9.1.1
+google-auth==2.40.3
+requests>=2.31
+psutil==7.0.0
+scipy==1.17.1
+python-dotenv==1.2.1

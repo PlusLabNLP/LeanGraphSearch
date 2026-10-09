@@ -1,0 +1,82 @@
+{
+  "note": "Public download revisions pinned when assembling this code package; original experiment model snapshot hashes were not recorded in the source configs.",
+  "huggingface": {
+    "embedder": {
+      "repo_id": "Qwen/Qwen3-Embedding-8B",
+      "repo_type": "model",
+      "revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+      "files": [
+        ".gitattributes",
+        "1_Pooling/config.json",
+        "LICENSE",
+        "README.md",
+        "config.json",
+        "config_sentence_transformers.json",
+        "generation_config.json",
+        "merges.txt",
+        "model-00001-of-00004.safetensors",
+        "model-00002-of-00004.safetensors",
+        "model-00003-of-00004.safetensors",
+        "model-00004-of-00004.safetensors",
+        "model.safetensors.index.json",
+        "modules.json",
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "vocab.json"
+      ],
+      "local_dir": "models/Qwen3-Embedding-8B"
+    },
+    "reranker": {
+      "repo_id": "Qwen/Qwen3-Reranker-8B",
+      "repo_type": "model",
+      "revision": "77d193c791ed757ca307ee72715aa132723da912",
+      "files": [
+        ".gitattributes",
+        "1_LogitScore/config.json",
+        "README.md",
+        "chat_template.jinja",
+        "config.json",
+        "config_sentence_transformers.json",
+        "generation_config.json",
+        "merges.txt",
+        "model-00001-of-00005.safetensors",
+        "model-00002-of-00005.safetensors",
+        "model-00003-of-00005.safetensors",
+        "model-00004-of-00005.safetensors",
+        "model-00005-of-00005.safetensors",
+        "model.safetensors.index.json",
+        "modules.json",
+        "sentence_bert_config.json",
+        "tokenizer.json",
+        "tokenizer_config.json",
+        "vocab.json"
+      ],
+      "local_dir": "models/Qwen3-Reranker-8B"
+    },
+    "cuvs": {
+      "repo_id": "FrenzyMath/lsv2-mathlib-v4.28.0-rc1-cuvs",
+      "repo_type": "dataset",
+      "revision": "c3757ad6c491e1afa3cc293a61119f1ff31292a0",
+      "files": [
+        ".gitattributes",
+        "README.md",
+        "cuvs_index.bin",
+        "metadata.pkl",
+        "texts.pkl"
+      ],
+      "local_dir": "data/cuvs/mathlib-v4.28.0-rc1"
+    }
+  },
+  "git": {
+    "mathlib": {
+      "url": "https://github.com/leanprover-community/mathlib4.git",
+      "revision": "5352afccd6866369be9de43f5b7ec47203555f44",
+      "local_dir": "external/Mathlib4"
+    },
+    "jixia": {
+      "url": "https://github.com/frenzymath/jixia.git",
+      "revision": "995437281e103bf3ca7d876dd36dff649d0d42d2",
+      "local_dir": "external/jixia"
+    }
+  }
+}

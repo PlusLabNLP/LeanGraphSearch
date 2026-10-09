@@ -1,0 +1,12 @@
+# Copy to config.local.yaml only if local overrides are needed.
+# This file is merged over both the default and any selected experiment preset.
+models:
+  embedder: models/Qwen3-Embedding-8B
+  reranker: models/Qwen3-Reranker-8B
+serve:
+  num_gpus: 1
+  device_policy: single_gpu
+  max_rerank_batch_size: 8
+retriever:
+  url: http://127.0.0.1:8000
+# Supply GOOGLE_CLOUD_PROJECT and Application Default Credentials externally.

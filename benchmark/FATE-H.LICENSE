@@ -1,0 +1,13 @@
+FATE-H is part of the FATE benchmark series and is redistributed in this
+repository under the Creative Commons Attribution 4.0 International License
+(CC BY 4.0).
+
+  Paper: Jiang, Jiedong; He, Wanyi; Wang, Yuefeng; Gao, Guoxiong; Hu, Yongle;
+         Wang, Jingting; Guan, Nailin; Wu, Peihao; Dai, Chunbo; Xiao, Liang;
+         Dong, Bin. "FATE: A Formal Benchmark Series for Frontier Algebra of
+         Multiple Difficulty Levels." arXiv:2511.02872, 2025.
+
+  License: https://creativecommons.org/licenses/by/4.0/
+
+The contents of `benchmark/FATE-H.jsonl` are reproduced unmodified from the
+upstream release. Please cite the FATE paper if you use this benchmark.

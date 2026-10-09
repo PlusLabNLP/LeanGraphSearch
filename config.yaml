@@ -1,0 +1,42 @@
+# Shared retrieval service and dependency-graph construction.
+paths:
+  cuvs_db: data/cuvs/mathlib-v4.28.0-rc1
+  corpus_workdir: data/corpus
+  mathlib4: external/Mathlib4
+  jixia_bin: external/jixia/.lake/build/bin/jixia
+models:
+  embedder: models/Qwen3-Embedding-8B
+  reranker: models/Qwen3-Reranker-8B
+serve:
+  num_gpus: 1
+  gpu_memory_utilization: 0.9
+  device_policy: single_gpu
+  max_rerank_batch_size: 8
+  max_concurrent_requests: 1
+  request_queue_enabled: true
+  embedding_dtype: bfloat16
+retriever:
+  url: http://127.0.0.1:8000
+  timeout_s: 600
+graph:
+  graph_augment: false
+  artifact_dir: data/graph/dep_only
+  graph_edge_profile: dep_only
+  initial_top_n: 50
+  graph_expand_m: 200
+  final_top_k: 100
+  preserve_standard_top_k: 0
+  graph_only_slots_after_preserved: 0
+  restart_probability: 0.15
+  max_iterations: 50
+  tolerance: 1.0e-06
+  rerank_graph_union: true
+  reranker_required: true
+  rank_fusion: qwen_ppr_zscore
+  ppr_zscore_weight: 0.005
+  edge_weights:
+    dep: 1.0
+    rev_dep: 0.0
+    same_module: 0.0
+    semantic_knn: 0.0
+    co_premise: 0.0

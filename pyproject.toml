@@ -1,0 +1,50 @@
+[project]
+name = "leangraphsearch"
+version = "0.1.0"
+description = "LeanGraphSearch: graph-augmented premise retrieval for Lean 4."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "pydantic>=2.5",
+    "python-dotenv>=1.0",
+    "pyyaml>=6.0",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "torch>=2.2",
+    "sentence-transformers>=3.0",
+    "transformers>=4.51",
+    "httpx>=0.27",
+    "psutil>=6.0",
+    "openai>=1.40",
+    "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+# cuVS / RAPIDS — install via the matching CUDA wheel index, e.g.
+#   pip install -e ".[cuvs]" --extra-index-url https://pypi.nvidia.com
+cuvs = [
+    "cuvs-cu12>=25.12",
+    "cupy-cuda12x>=13.6",
+]
+# Lean 4 REPL via lean-interact (only needed for the prove task; requires
+# elan/lake on PATH). Install with `pip install -e ".[lean]"`.
+lean = [
+    "lean-interact>=0.11.4",
+]
+# Claude on Google Vertex AI via Application Default Credentials.
+vertex = [
+    "anthropic[vertex]>=0.75",
+    "google-auth>=2.40.3",
+    "requests>=2.31",
+]
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

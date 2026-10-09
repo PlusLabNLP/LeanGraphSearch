@@ -1,0 +1,10 @@
+Copyright 2025 Google LLC
+
+The benchmark data is redistributed under Creative Commons Attribution 4.0
+International (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/legalcode
+Source: https://github.com/google-deepmind/superhuman
+Revision: 96fa6c4cc3a9bb7450ee7b6773b659d3a030dace
+Original file: imobench/lean_proof_bench.csv
+The data bytes are unchanged; only the filename in this package differs.
+The source README licenses software under Apache-2.0 and other materials
+under CC BY 4.0. This is not an official Google product.

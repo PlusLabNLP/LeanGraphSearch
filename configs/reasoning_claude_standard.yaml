@@ -1,0 +1,35 @@
+# Paper evaluation client; the shared server uses config.yaml.
+retriever:
+  url: http://127.0.0.1:8000
+  timeout_s: 600
+llm:
+  sonnet5_vertex:
+    provider: anthropic_vertex
+    region: global
+    model: claude-sonnet-5
+    thinking:
+      type: adaptive
+      display: omitted
+    output_config:
+      effort: high
+    max_tokens: 128000
+    timeout_s: 3600
+    max_retries: 3
+reasoning:
+  search_top_k: 50
+  filter_max_docs: 50
+  output_top_k: 100
+  big_loop: 3
+  branch_budget: 2
+  parallelism: 2
+  sketch_llm: sonnet5_vertex
+  filter_llm: sonnet5_vertex
+  judge_llm: sonnet5_vertex
+graph:
+  graph_augment: false
+  reranker_required: true
+  rank_fusion: none
+  artifact_dir: data/graph/dep_only
+  initial_top_n: 50
+  graph_expand_m: 200
+  final_top_k: 100

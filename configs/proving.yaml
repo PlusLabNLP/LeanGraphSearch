@@ -1,0 +1,62 @@
+# Paper evaluation client; the shared server uses config.yaml.
+retriever:
+  url: http://127.0.0.1:8000
+  timeout_s: 600
+llm:
+  gemini31pro_vertex:
+    provider: gemini_vertex
+    region: global
+    model: gemini-3.1-pro-preview-customtools
+    thinking_level: HIGH
+    enable_google_search: false
+    top_p: 1.0
+    max_tokens: 65536
+    seed: 20260806
+    timeout_s: 3600
+    max_retries: 3
+reasoning:
+  search_top_k: 50
+  filter_max_docs: 50
+  output_top_k: 100
+  big_loop: 3
+  branch_budget: 2
+  parallelism: 4
+  sketch_llm: gemini31pro_vertex
+  filter_llm: gemini31pro_vertex
+  judge_llm: gemini31pro_vertex
+prove:
+  prover_llm: gemini31pro_vertex
+  query_llm: gemini31pro_vertex
+  parallelism: 4
+  strict_integrity: true
+  max_model_calls: 63
+  max_query_calls: 31
+  max_compiler_calls: 32
+  num_queries_per_action: 5
+  standard_search_top_k: 50
+  compiler_timeout_s: 600
+  attempt_timeout_s: 115200
+  failure_memory:
+    mode: free
+graph:
+  graph_augment: true
+  artifact_dir: data/graph/dep_only
+  graph_edge_profile: dep_only
+  initial_top_n: 50
+  graph_expand_m: 200
+  final_top_k: 100
+  preserve_standard_top_k: 0
+  graph_only_slots_after_preserved: 0
+  restart_probability: 0.15
+  max_iterations: 50
+  tolerance: 1.0e-06
+  rerank_graph_union: true
+  reranker_required: true
+  rank_fusion: qwen_ppr_zscore
+  ppr_zscore_weight: 0.005
+  edge_weights:
+    dep: 1.0
+    rev_dep: 0.0
+    same_module: 0.0
+    semantic_knn: 0.0
+    co_premise: 0.0

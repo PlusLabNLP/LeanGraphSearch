@@ -1,0 +1,15 @@
+LeanGraphSearch — anonymous supplementary source package
+Copyright 2026 Anonymous contributors (separable graph/runtime additions).
+
+Derived from LeanSearch v2 (FrenzyMath/LeanSearch-v2).
+Upstream source and modifications to it remain under Apache-2.0 (LICENSE).
+Separable graph/runtime additions retain the MIT terms in LICENSE-MIT.
+
+This supplement makes paths and service defaults portable, removes identifying
+metadata and historical outputs, extracts shared model/diagnostic code, and
+removes unrelated experiment frameworks. Evaluation entry points and presets
+are restricted to the final manuscript. The MathlibQR entry point uses the
+shared retrieval backend. PAPER_SETTINGS.md records settings that differ from
+historical working configurations. Core retrieval and verification code and
+paper prompt text are retained. Third-party attribution appears in
+THIRD_PARTY_NOTICES.md and the benchmark license files.
