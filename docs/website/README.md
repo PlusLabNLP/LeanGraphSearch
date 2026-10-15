@@ -27,8 +27,9 @@ analytics, tracking scripts, or external font requests.
 - Retrieval results in `index.html` are transcribed from Tables 1 and 2.
 - Proving results in `script.js` are transcribed from Tables 3–5, preserving
   each benchmark, memory setting, reflection budget, and relative cost.
-- The page retains the anonymous author line of the supplied submission.
-  Replace it only with a verified public author list and affiliations.
+- The page lists the public authors in the order supplied by the project owner,
+  with UCLA as the shared affiliation. Names have no links or affiliation markers.
+  The bundled PDF remains the unchanged anonymous submission supplied initially.
 - The visual layout is inspired by <https://jianzhubao.github.io/SPACE/>.
   Its scientific content, branding, and author information are not reused.
 
