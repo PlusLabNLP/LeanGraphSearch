@@ -28,8 +28,11 @@ analytics, tracking scripts, or external font requests.
 - The static proving summary table in `index.html` combines Tables 3–5,
   preserving each evaluation set, memory setting, reflection budget, and relative
   cost. The overall column sums solved@32 over all 210 problems. Bold denotes
-  the best value within each memory setting, including ties (cost: lower is
-  better). All proving results remain readable without JavaScript.
+  the best solved counts within each memory setting, including ties. Cost
+  values have a uniform weight, without a special best-value highlight. The
+  wide table fits desktop screens; a single vertically grouped table shows the
+  same results on narrow screens without horizontal scrolling. All proving
+  results remain readable without JavaScript.
 - The page lists the public authors in the order supplied by the project owner,
   with UCLA as the shared affiliation. Names have no links or affiliation markers.
   The bundled PDF remains the unchanged anonymous submission supplied initially.
