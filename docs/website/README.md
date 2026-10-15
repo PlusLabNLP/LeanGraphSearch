@@ -1,0 +1,48 @@
+# LeanGraphSearch project website
+
+Static project page for **LeanGraphSearch for Formal Theorem Proving**.
+
+Production URL: <https://pluslabnlp.github.io/LeanGraphSearch/>
+
+## Preview
+
+From the repository root:
+
+```sh
+python3 -m http.server 8000 --directory docs/website
+```
+
+Open <http://localhost:8000>. No build step or third-party runtime is needed.
+All fonts, figures, scripts, styles, and the paper load locally; there are no
+analytics, tracking scripts, or external font requests.
+
+## Content and figures
+
+- The supplied anonymous submission is included, unchanged, as
+  `assets/LeanGraphSearch-paper.pdf`.
+- `assets/overview.png` and `assets/method.png` are cropped renderings of
+  Figures 1 and 2 from that paper, excluding page headers, review line numbers,
+  and surrounding text.
+- `assets/cost.svg` redraws the values from Figure 3.
+- Retrieval results in `index.html` are transcribed from Tables 1 and 2.
+- Proving results in `script.js` are transcribed from Tables 3–5, preserving
+  each benchmark, memory setting, reflection budget, and relative cost.
+- The page retains the anonymous author line of the supplied submission.
+  Replace it only with a verified public author list and affiliations.
+- The visual layout is inspired by <https://jianzhubao.github.io/SPACE/>.
+  Its scientific content, branding, and author information are not reused.
+
+## Deployment
+
+In repository **Settings → Pages → Build and deployment**, set **Source** to
+**GitHub Actions**. This one-time repository setting must be enabled by an
+administrator; SSH push access alone cannot change it.
+
+`.github/workflows/website.yml` publishes **only `docs/website`** at the project
+URL. It runs on website changes pushed to `main`, and can also be run manually
+from the Actions tab. It does not publish the repository root. The uploaded
+artifact deliberately flattens the source path, so the public URL is
+`/LeanGraphSearch/`, not `/LeanGraphSearch/docs/website/`.
+
+For future edits, change these static files and push. If content changes, verify
+the numbers against the cited paper and inspect desktop and mobile layouts.

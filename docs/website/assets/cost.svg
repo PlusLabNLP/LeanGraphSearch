@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 490" role="img" aria-labelledby="title desc">
+<title id="title">API cost per solved problem</title>
+<desc id="desc">Paper Figure 3. US dollars per solved problem across 210 theorem-proving instances. LeanGraphSearch standard has the lowest cost in both memory settings.</desc>
+<rect width="1000" height="490" fill="white"/>
+<g font-family="Arial, Helvetica, sans-serif" fill="#253046">
+<text x="245" y="35" text-anchor="middle" font-size="20" font-weight="600">Failure memory disabled</text>
+<path d="M222.0 66V415" stroke="#e8ecf2"/><text x="222.0" y="442" text-anchor="middle" fill="#566176" font-size="13">0</text>
+<path d="M279.2 66V415" stroke="#e8ecf2"/><text x="279.2" y="442" text-anchor="middle" fill="#566176" font-size="13">4</text>
+<path d="M336.4 66V415" stroke="#e8ecf2"/><text x="336.4" y="442" text-anchor="middle" fill="#566176" font-size="13">8</text>
+<path d="M393.6 66V415" stroke="#e8ecf2"/><text x="393.6" y="442" text-anchor="middle" fill="#566176" font-size="13">12</text>
+<path d="M450.8 66V415" stroke="#e8ecf2"/><text x="450.8" y="442" text-anchor="middle" fill="#566176" font-size="13">16</text>
+<text x="210" y="104" text-anchor="end" font-size="13" font-weight="400">No retrieval</text>
+<rect x="222" y="85" width="198.20" height="29" rx="2" fill="#98a5b5"/><text x="427.20" y="105" font-size="14" font-weight="600">$13.86</text>
+<text x="210" y="169" text-anchor="end" font-size="13" font-weight="400">LeanSearch v2 · Standard</text>
+<rect x="222" y="150" width="160.45" height="29" rx="2" fill="#416fa3"/><text x="389.45" y="170" font-size="14" font-weight="600">$11.22</text>
+<text x="210" y="234" text-anchor="end" font-size="13" font-weight="600">LeanGraphSearch · Standard</text>
+<rect x="222" y="215" width="149.58" height="29" rx="2" fill="#117d78"/><text x="378.58" y="235" font-size="14" font-weight="600">$10.46</text>
+<text x="210" y="299" text-anchor="end" font-size="13" font-weight="400">LeanSearch v2 · Reasoning</text>
+<rect x="222" y="280" width="196.20" height="29" rx="2" fill="#416fa3"/><text x="425.20" y="300" font-size="14" font-weight="600">$13.72</text>
+<text x="210" y="364" text-anchor="end" font-size="13" font-weight="600">LeanGraphSearch · Reasoning</text>
+<rect x="222" y="345" width="198.63" height="29" rx="2" fill="#117d78"/><text x="427.63" y="365" font-size="14" font-weight="600">$13.89</text>
+<text x="335" y="474" text-anchor="middle" fill="#566176" font-size="13">USD per solved problem ↓</text>
+<text x="745" y="35" text-anchor="middle" font-size="20" font-weight="600">Failure memory enabled</text>
+<path d="M722.0 66V415" stroke="#e8ecf2"/><text x="722.0" y="442" text-anchor="middle" fill="#566176" font-size="13">0</text>
+<path d="M779.2 66V415" stroke="#e8ecf2"/><text x="779.2" y="442" text-anchor="middle" fill="#566176" font-size="13">4</text>
+<path d="M836.4 66V415" stroke="#e8ecf2"/><text x="836.4" y="442" text-anchor="middle" fill="#566176" font-size="13">8</text>
+<path d="M893.6 66V415" stroke="#e8ecf2"/><text x="893.6" y="442" text-anchor="middle" fill="#566176" font-size="13">12</text>
+<path d="M950.8 66V415" stroke="#e8ecf2"/><text x="950.8" y="442" text-anchor="middle" fill="#566176" font-size="13">16</text>
+<text x="710" y="104" text-anchor="end" font-size="13" font-weight="400">No retrieval</text>
+<rect x="722" y="85" width="204.20" height="29" rx="2" fill="#98a5b5"/><text x="933.20" y="105" font-size="14" font-weight="600">$14.28</text>
+<text x="710" y="169" text-anchor="end" font-size="13" font-weight="400">LeanSearch v2 · Standard</text>
+<rect x="722" y="150" width="165.59" height="29" rx="2" fill="#416fa3"/><text x="894.59" y="170" font-size="14" font-weight="600">$11.58</text>
+<text x="710" y="234" text-anchor="end" font-size="13" font-weight="600">LeanGraphSearch · Standard</text>
+<rect x="722" y="215" width="156.44" height="29" rx="2" fill="#117d78"/><text x="885.44" y="235" font-size="14" font-weight="600">$10.94</text>
+<text x="710" y="299" text-anchor="end" font-size="13" font-weight="400">LeanSearch v2 · Reasoning</text>
+<rect x="722" y="280" width="203.63" height="29" rx="2" fill="#416fa3"/><text x="932.63" y="300" font-size="14" font-weight="600">$14.24</text>
+<text x="710" y="364" text-anchor="end" font-size="13" font-weight="600">LeanGraphSearch · Reasoning</text>
+<rect x="722" y="345" width="186.19" height="29" rx="2" fill="#117d78"/><text x="915.19" y="365" font-size="14" font-weight="600">$13.02</text>
+<text x="835" y="474" text-anchor="middle" fill="#566176" font-size="13">USD per solved problem ↓</text>
+</g></svg>

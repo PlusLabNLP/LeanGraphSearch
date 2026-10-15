@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LeanGraphSearch for Formal Theorem Proving</title>
+  <meta name="description" content="Discover supporting lemmas through Mathlib's dependency graph. LeanGraphSearch combines semantic retrieval, personalized PageRank, and reranking for Lean 4 theorem proving.">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LeanGraphSearch for Formal Theorem Proving">
+  <meta property="og:description" content="From semantic matches to supporting premises: dependency-guided retrieval for Lean 4.">
+  <meta property="og:url" content="https://pluslabnlp.github.io/LeanGraphSearch/">
+  <meta property="og:image" content="https://pluslabnlp.github.io/LeanGraphSearch/assets/overview.png">
+  <link rel="canonical" href="https://pluslabnlp.github.io/LeanGraphSearch/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <noscript><style>[role="tabpanel"][hidden]{display:block!important}[role="tabpanel"]{margin-bottom:40px}.results-tabs,.controls{display:none}</style></noscript>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <nav class="navigation" aria-label="Page sections">
+    <a class="wordmark" href="#top">LeanGraphSearch</a>
+    <div class="nav-links"><a href="#overview">Overview</a><a href="#method">Method</a><a href="#results">Results</a></div>
+  </nav>
+
+  <header class="hero" id="top">
+    <h1><span>LeanGraphSearch</span><br>for Formal Theorem Proving</h1>
+    <p class="tagline">Find the lemmas behind the lemmas.</p>
+    <p class="authors">Anonymous authors</p>
+    <p class="submission">Paper under double-blind review</p>
+    <div class="resource-links" aria-label="Project resources">
+      <a class="resource-button" href="assets/LeanGraphSearch-paper.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg>Paper</a>
+      <a class="resource-button" href="https://github.com/PlusLabNLP/LeanGraphSearch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 20"/></svg>Code</a>
+      <a class="resource-button" href="https://github.com/PlusLabNLP/LeanGraphSearch/blob/main/REPRODUCING.md"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6l2 2h8v14H4zM8 12h8M8 16h6"/></svg>Reproduce</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <figure class="teaser wide">
+      <a href="assets/overview.png" aria-label="View the overview figure at full resolution"><img src="assets/overview.png" width="1404" height="702" fetchpriority="high" alt="Semantic matches lead to shared and multi-hop premises. Selected results compare LeanSearch v2 with LeanGraphSearch: MathlibQR recall 82.7 to 94.7 percent, MathlibMPR route coverage 39.1 to 42.8 percent, and FATE-H proving success 73 to 81 percent."></a>
+      <figcaption><strong>Semantic similarity finds a starting point. Formal dependencies reveal what supports it.</strong><br>Selected results from Figure 1. MathlibQR: Recall@100; MathlibMPR: Covered@20; FATE-H: pass@32, reasoning mode with failure memory.</figcaption>
+    </figure>
+
+    <section class="section band" id="overview" aria-labelledby="overview-heading">
+      <div class="prose">
+        <p class="eyebrow">Beyond direct query matching</p>
+        <h2 id="overview-heading">Useful premises are not always similar premises.</h2>
+        <p>Formal theorem proving relies on finding the right definitions, theorems, and lemmas in a large library. A relevant declaration is often a useful starting point, but the supporting lemmas behind it may look very different from the original query.</p>
+        <p><strong>LeanGraphSearch</strong> follows these structural connections. It builds a directed graph from Mathlib declarations to the premises they reference, starts from semantically relevant declarations, and uses <strong>personalized PageRank</strong> to uncover supporting lemmas along multi-hop dependency chains. A second reranking pass evaluates the expanded candidates against the original query.</p>
+        <p>We evaluate both premise retrieval and downstream theorem proving. The method improves declaration recall on MathlibQR and complete proof-route coverage on MathlibMPR. In an iterative Lean proving loop, graph retrieval also improves proof completion and reduces aggregate API cost per solved problem in the standard-mode configuration.</p>
+      </div>
+      <div class="highlights wide" aria-label="Selected paper results">
+        <div><strong>+12.0<span> pp</span></strong><p>MathlibQR Recall@100<br><small>82.7% → 94.7%</small></p></div>
+        <div><strong>+3.7<span> pp</span></strong><p>MathlibMPR Covered@20<br><small>39.1% → 42.8%</small></p></div>
+        <div><strong>151<span> / 210</span></strong><p>Theorem-proving problems solved<br><small>Reasoning mode + failure memory, 32 turns</small></p></div>
+      </div>
+    </section>
+
+    <section class="section" id="method" aria-labelledby="method-heading">
+      <div class="prose"><p class="eyebrow">From library structure to proof context</p><h2 id="method-heading">How LeanGraphSearch works</h2><p>Static analysis with <code>jixia</code> extracts references from declaration types and values. Each edge points from a declaration to a dependency. At query time, retrieval proceeds in three stages:</p></div>
+      <figure class="method-figure wide"><a href="assets/method.png" aria-label="View the method diagram at full resolution"><img src="assets/method.png" width="1404" height="910" loading="lazy" alt="Figure 2: jixia constructs a Mathlib declaration dependency graph. Semantic seed retrieval is followed by query-aware personalized PageRank, candidate merging, a second reranking, and final score fusion."></a><figcaption>Figure 2 from the paper: dependency graph construction and graph-based retrieval.</figcaption></figure>
+      <ol class="method-steps wide">
+        <li><span class="step-number">01</span><h3>Retrieve semantic seeds</h3><p>Qwen3 embeddings retrieve candidates; a Qwen3 reranker selects declarations relevant to the query.</p></li>
+        <li><span class="step-number">02</span><h3>Follow formal dependencies</h3><p>Personalized PageRank propagates relevance toward dependencies, while restarts keep the search anchored to the query.</p></li>
+        <li><span class="step-number">03</span><h3>Refine the candidates</h3><p>Merge seed and graph candidates, rerank them against the query, and combine relevance with normalized graph scores.</p></li>
+      </ol>
+      <div class="prose loop-note"><h3>Inside a Lean proving loop</h3><p>The prover revises one proof candidate using Lean compiler feedback and retrieved premises. Optional problem-local failure memory records recurring formal states to help avoid repeated failed repairs. We compare standard and reasoning retrieval modes, with and without memory, under the same prover and reflection budgets.</p></div>
+    </section>
+
+    <section class="section band" id="results" aria-labelledby="results-heading">
+      <div class="results-gallery wide">
+        <p class="eyebrow">Retrieval quality · Proof completion · API cost</p>
+        <h2 id="results-heading">Experimental results</h2>
+        <div class="results-tabs" role="tablist" aria-label="Experiment results">
+          <button id="tab-retrieval" type="button" role="tab" aria-controls="panel-retrieval" aria-selected="true" tabindex="0">Premise retrieval</button>
+          <button id="tab-proving" type="button" role="tab" aria-controls="panel-proving" aria-selected="false" tabindex="-1">Theorem proving</button>
+          <button id="tab-cost" type="button" role="tab" aria-controls="panel-cost" aria-selected="false" tabindex="-1">Cost efficiency</button>
+        </div>
+        <div id="panel-retrieval" role="tabpanel" aria-labelledby="tab-retrieval" tabindex="0">
+          <h3>Find declarations. Recover complete proof routes.</h3>
+          <p>On the 810-query fair subset of MathlibQR, graph retrieval improves every reported metric. On MathlibMPR, complete-route coverage improves at every evaluated cutoff.</p>
+          <div class="table-wrap" role="region" aria-label="MathlibQR results" tabindex="0"><table><caption>MathlibQR · 810 queries over 171 shared declarations · Paper Table 1</caption><thead><tr><th scope="col">Method</th><th scope="col">nDCG@1</th><th scope="col">nDCG@5</th><th scope="col">nDCG@10</th><th scope="col">Recall@10</th><th scope="col">Recall@50</th><th scope="col">Recall@100</th></tr></thead><tbody>
+            <tr><th scope="row">LeanExplore</th><td>0.246</td><td>0.358</td><td>0.393</td><td>0.569</td><td>0.743</td><td>0.789</td></tr>
+            <tr><th scope="row">LeanFinder</th><td>0.370</td><td>0.514</td><td>0.533</td><td>0.698</td><td>0.824</td><td>0.875</td></tr>
+            <tr><th scope="row">LeanSearch v2 <small>Standard</small></th><td>0.472</td><td>0.596</td><td>0.616</td><td>0.765</td><td>0.821</td><td>0.827</td></tr>
+            <tr class="ours"><th scope="row">LeanGraphSearch <small>Standard</small></th><td><strong>0.473</strong></td><td><strong>0.604</strong></td><td><strong>0.629</strong></td><td><strong>0.794</strong></td><td><strong>0.899</strong></td><td><strong>0.947</strong></td></tr>
+          </tbody></table></div>
+          <div class="table-wrap" role="region" aria-label="MathlibMPR route coverage results" tabindex="0"><table><caption>MathlibMPR · Complete-route coverage (%) · Selected rows from Paper Table 2</caption><thead><tr><th scope="col">Method</th><th scope="col">Covered@5</th><th scope="col">Covered@10</th><th scope="col">Covered@20</th><th scope="col">Covered@30</th><th scope="col">Covered@50</th></tr></thead><tbody>
+            <tr><th scope="row">LeanSearch v2 <small>Reasoning</small></th><td>22.5</td><td>29.7</td><td>39.1</td><td>41.3</td><td>41.3</td></tr>
+            <tr class="ours"><th scope="row">LeanGraphSearch <small>Reasoning</small></th><td><strong>23.9</strong></td><td><strong>31.9</strong></td><td><strong>42.8</strong></td><td><strong>43.5</strong></td><td><strong>44.2</strong></td></tr>
+          </tbody></table></div>
+          <p class="result-note">Covered@k requires every premise group in at least one annotated proof route to be retrieved. MathlibMPR rows are arithmetic means over Gemini 3.1 Pro and Claude Sonnet 5. LeanExplore and LeanFinder results are quoted in the paper from Gao et al. (2026).</p>
+        </div>
+        <div id="panel-proving" role="tabpanel" aria-labelledby="tab-proving" tabindex="0" hidden>
+          <h3>Better retrieval can lead to more completed proofs.</h3>
+          <p>Gemini 3.1 Pro is the prover backbone. Each problem has a budget of up to 32 reflection turns. Select a benchmark and failure-memory setting to compare matched configurations.</p>
+          <div class="controls"><label>Benchmark<select id="benchmark"><option value="fate">FATE-H · 100 problems</option><option value="mpr">MathlibMPR-Prop · 50 problems</option><option value="basic">Lean-IMO Basic · 30 problems</option><option value="advanced">Lean-IMO Advanced · 30 problems</option></select></label><label>Failure memory<select id="memory"><option value="on">Enabled</option><option value="off">Disabled</option></select></label></div>
+          <div class="table-wrap" role="region" aria-label="Theorem proving results" tabindex="0"><table><caption id="proving-caption">FATE-H · Failure memory enabled · Paper Table 3</caption><thead><tr><th scope="col">Retrieval condition</th><th scope="col">Solved @8</th><th scope="col">Solved @16</th><th scope="col">Solved @32</th><th scope="col">Relative cost</th></tr></thead><tbody id="proving-body">
+            <tr><th scope="row">No retrieval</th><td>33</td><td>45</td><td>52</td><td>1.00×</td></tr>
+            <tr><th scope="row">LeanSearch v2 <small>Standard</small></th><td>53</td><td>63</td><td>71</td><td>1.01×</td></tr>
+            <tr class="ours"><th scope="row">LeanGraphSearch <small>Standard</small></th><td>54</td><td>68</td><td>73</td><td>1.01×</td></tr>
+            <tr><th scope="row">LeanSearch v2 <small>Reasoning</small></th><td>54</td><td>66</td><td>73</td><td>1.31×</td></tr>
+            <tr class="ours"><th scope="row">LeanGraphSearch <small>Reasoning</small></th><td>58</td><td>75</td><td>81</td><td>1.22×</td></tr>
+          </tbody></table></div>
+          <p id="proving-status" class="sr-only" aria-live="polite"></p>
+          <p class="result-note">Values are numbers of solved problems, not percentages. “@k” denotes the reflection-turn budget, following the paper's pass@k convention. Relative cost is full-budget API expenditure normalized by no retrieval within the same benchmark and memory setting; lower is better. Results transcribed from Tables 3–5.</p>
+          <noscript><p>Interactive comparisons require JavaScript. The default table shows FATE-H with failure memory enabled; all settings are available in the paper.</p></noscript>
+        </div>
+        <div id="panel-cost" role="tabpanel" aria-labelledby="tab-cost" tabindex="0" hidden>
+          <h3>Less API expenditure per completed proof.</h3>
+          <p>Across the union of 210 theorem-proving problems, standard-mode LeanGraphSearch has the lowest API cost per solved problem in both memory settings.</p>
+          <figure class="cost-figure"><img src="assets/cost.svg" width="1000" height="490" loading="lazy" alt="API cost per solved problem in US dollars. Memory disabled: no retrieval 13.86, LeanSearch standard 11.22, LeanGraphSearch standard 10.46, LeanSearch reasoning 13.72, LeanGraphSearch reasoning 13.89. Memory enabled: 14.28, 11.58, 10.94, 14.24, 13.02 respectively."><figcaption>Redrawn from Paper Figure 3. Total API expenditure, including unsuccessful runs, divided by problems solved within 32 turns. Lower is better.</figcaption></figure>
+          <p class="result-note">With memory enabled, reasoning-mode LeanGraphSearch solves the most problems overall (151/210), at $13.02 per solved problem. Standard mode offers the lowest cost per solved problem ($10.94) in that setting. These are distinct accuracy–cost operating points.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section resources" aria-labelledby="resources-heading"><div class="prose"><h2 id="resources-heading">Explore and reproduce</h2><p>The source package includes the retrieval pipeline, graph construction, proving loop, small benchmark inputs, and experiment presets. Model weights, corpora, indexes, and graph artifacts are prepared separately using the documented dependency setup.</p><div class="text-links"><a href="assets/LeanGraphSearch-paper.pdf">Read the paper <span aria-hidden="true">↗</span></a><a href="https://github.com/PlusLabNLP/LeanGraphSearch">Browse the code <span aria-hidden="true">↗</span></a><a href="https://github.com/PlusLabNLP/LeanGraphSearch/blob/main/REPRODUCING.md">Reproduction guide <span aria-hidden="true">↗</span></a></div></div></section>
+  </main>
+  <footer><p>LeanGraphSearch · Dependency-guided retrieval for Lean 4</p><p class="design-credit">Layout inspired by the <a href="https://jianzhubao.github.io/SPACE/">SPACE project page</a>.</p><a href="#top">Back to top ↑</a></footer>
+</body>
+</html>
