@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 490" role="img" aria-labelledby="title desc">
 <title id="title">API cost per solved problem</title>
-<desc id="desc">Paper Figure 3. US dollars per solved problem across 210 theorem-proving instances. LeanGraphSearch standard has the lowest cost in both memory settings.</desc>
+<desc id="desc">Paper Figure 3. US dollars per solved problem across the theorem-proving benchmarks. LeanGraphSearch standard has the lowest cost in both memory settings.</desc>
 <rect width="1000" height="490" fill="white"/>
 <g font-family="Arial, Helvetica, sans-serif" fill="#253046">
 <text x="245" y="35" text-anchor="middle" font-size="20" font-weight="600">Failure memory disabled</text>

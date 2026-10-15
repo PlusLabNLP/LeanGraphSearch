@@ -31,11 +31,10 @@
       <p class="author-row"><span>Yihan Xu</span><span>Jia-Chen Gu</span><span>Junyi Zhang</span><span>Di Wu</span><span>Haikang Deng</span></p>
       <p class="author-row"><span>Po-Nien Kung</span><span>Kai-Wei Chang</span><span>Amit Sahai</span><span>Wei Wang</span><span>Nanyun Peng</span></p>
     </div>
-    <p class="affiliation">UCLA</p>
+    <p class="affiliation">UCLA PlusLab</p>
     <div class="resource-links" aria-label="Project resources">
       <a class="resource-button" href="assets/LeanGraphSearch-paper.pdf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg>Paper</a>
       <a class="resource-button" href="https://github.com/PlusLabNLP/LeanGraphSearch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 20"/></svg>Code</a>
-      <a class="resource-button" href="https://github.com/PlusLabNLP/LeanGraphSearch/blob/main/REPRODUCING.md"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6l2 2h8v14H4zM8 12h8M8 16h6"/></svg>Reproduce</a>
     </div>
   </header>
 
@@ -56,7 +55,6 @@
       <div class="highlights wide" aria-label="Selected paper results">
         <div><strong>+12.0<span> pp</span></strong><p>MathlibQR Recall@100<br><small>82.7% → 94.7%</small></p></div>
         <div><strong>+3.7<span> pp</span></strong><p>MathlibMPR Covered@20<br><small>39.1% → 42.8%</small></p></div>
-        <div><strong>151<span> / 210</span></strong><p>Theorem-proving problems solved<br><small>Reasoning mode + failure memory, 32 turns</small></p></div>
       </div>
     </section>
 
@@ -96,17 +94,17 @@
           <p class="result-note">Covered@k requires every premise group in at least one annotated proof route to be retrieved. MathlibMPR rows are arithmetic means over Gemini 3.1 Pro and Claude Sonnet 5. LeanExplore and LeanFinder results are quoted in the paper from Gao et al. (2026).</p>
         </div>
         <div id="panel-proving" role="tabpanel" aria-labelledby="tab-proving" tabindex="0" hidden>
-          <div class="proving-intro"><h3>Theorem proving across 210 problems</h3><p>All evaluation sets, reflection budgets, and retrieval configurations in one comparison. Gemini 3.1 Pro is the prover backbone; failure memory is evaluated both disabled and enabled.</p></div>
+          <div class="proving-intro"><h3>Theorem proving results</h3><p>All evaluation sets, reflection budgets, and retrieval configurations in one comparison. Gemini 3.1 Pro is the prover backbone; failure memory is evaluated both disabled and enabled.</p></div>
           <p class="proving-legend"><span class="legend-swatch" aria-hidden="true"></span> LeanGraphSearch rows <span class="legend-best">Bold</span> best solved counts within each memory setting (ties included). <span>Higher solved counts and lower costs are better.</span></p>
           <div class="table-wrap proving-table-wrap" role="region" aria-label="Complete theorem proving results">
             <table class="proving-master" aria-describedby="proving-note">
               <caption>Full theorem-proving results · Paper Tables 3–5</caption>
               <thead><tr><th scope="col" rowspan="2" class="method-column">Retrieval condition</th>
-                <th scope="colgroup" colspan="4" id="group-fate" class="benchmark-group">FATE-H<small>100 problems</small></th>
-                <th scope="colgroup" colspan="4" id="group-mpr" class="benchmark-group">MathlibMPR-Prop<small>50 problems</small></th>
-                <th scope="colgroup" colspan="4" id="group-basic" class="benchmark-group">Lean-IMO Basic<small>30 problems</small></th>
-                <th scope="colgroup" colspan="4" id="group-advanced" class="benchmark-group">Lean-IMO Advanced<small>30 problems</small></th>
-                <th scope="col" rowspan="2" id="overall" class="overall-column">Overall<small>Solved @32<br>out of 210</small></th></tr><tr>
+                <th scope="colgroup" colspan="4" id="group-fate" class="benchmark-group">FATE-H</th>
+                <th scope="colgroup" colspan="4" id="group-mpr" class="benchmark-group">MathlibMPR-Prop</th>
+                <th scope="colgroup" colspan="4" id="group-basic" class="benchmark-group">Lean-IMO Basic</th>
+                <th scope="colgroup" colspan="4" id="group-advanced" class="benchmark-group">Lean-IMO Advanced</th>
+                </tr><tr>
                 <th scope="col" id="fate-0" class="group-start">@8</th>
                 <th scope="col" id="fate-1" class="">@16</th>
                 <th scope="col" id="fate-2" class="">@32</th>
@@ -124,7 +122,7 @@
                 <th scope="col" id="advanced-2" class="">@32</th>
                 <th scope="col" id="advanced-3" class="cost-column">Cost ↓</th>
               </tr></thead>
-              <tbody class="memory-off"><tr class="memory-band"><th id="memory-off" scope="rowgroup" colspan="18"><span>Failure memory disabled</span></th></tr>
+              <tbody class="memory-off"><tr class="memory-band"><th id="memory-off" scope="rowgroup" colspan="17"><span>Failure memory disabled</span></th></tr>
                 <tr class="" data-method="0" data-memory="off"><th scope="row" id="method-off-0" class="method-column">No retrieval</th>
                   <td headers="memory-off method-off-0 group-fate fate-0" class="group-start">35</td>
                   <td headers="memory-off method-off-0 group-fate fate-1" class="">42</td>
@@ -142,7 +140,7 @@
                   <td headers="memory-off method-off-0 group-advanced advanced-1" class="">7</td>
                   <td headers="memory-off method-off-0 group-advanced advanced-2" class="">8</td>
                   <td headers="memory-off method-off-0 group-advanced advanced-3" class="cost-column">1.00×</td>
-                  <td headers="memory-off method-off-0 overall" class="overall-column">94</td></tr>
+                  </tr>
                 <tr class="" data-method="1" data-memory="off"><th scope="row" id="method-off-1" class="method-column">LeanSearch v2<small>Standard mode</small></th>
                   <td headers="memory-off method-off-1 group-fate fate-0" class="group-start">49</td>
                   <td headers="memory-off method-off-1 group-fate fate-1" class="">61</td>
@@ -160,7 +158,7 @@
                   <td headers="memory-off method-off-1 group-advanced advanced-1" class="">8</td>
                   <td headers="memory-off method-off-1 group-advanced advanced-2" class="">9</td>
                   <td headers="memory-off method-off-1 group-advanced advanced-3" class="cost-column">1.82×</td>
-                  <td headers="memory-off method-off-1 overall" class="overall-column">136</td></tr>
+                  </tr>
                 <tr class="ours" data-method="2" data-memory="off"><th scope="row" id="method-off-2" class="method-column">LeanGraphSearch<small>Standard mode</small></th>
                   <td headers="memory-off method-off-2 group-fate fate-0" class="group-start">53</td>
                   <td headers="memory-off method-off-2 group-fate fate-1" class="">69</td>
@@ -178,7 +176,7 @@
                   <td headers="memory-off method-off-2 group-advanced advanced-1" class=""><strong>9</strong></td>
                   <td headers="memory-off method-off-2 group-advanced advanced-2" class=""><strong>10</strong></td>
                   <td headers="memory-off method-off-2 group-advanced advanced-3" class="cost-column">1.88×</td>
-                  <td headers="memory-off method-off-2 overall" class="overall-column">143</td></tr>
+                  </tr>
                 <tr class="" data-method="3" data-memory="off"><th scope="row" id="method-off-3" class="method-column">LeanSearch v2<small>Reasoning mode</small></th>
                   <td headers="memory-off method-off-3 group-fate fate-0" class="group-start">52</td>
                   <td headers="memory-off method-off-3 group-fate fate-1" class="">68</td>
@@ -196,7 +194,7 @@
                   <td headers="memory-off method-off-3 group-advanced advanced-1" class=""><strong>9</strong></td>
                   <td headers="memory-off method-off-3 group-advanced advanced-2" class=""><strong>10</strong></td>
                   <td headers="memory-off method-off-3 group-advanced advanced-3" class="cost-column">2.56×</td>
-                  <td headers="memory-off method-off-3 overall" class="overall-column"><strong>145</strong></td></tr>
+                  </tr>
                 <tr class="ours" data-method="4" data-memory="off"><th scope="row" id="method-off-4" class="method-column">LeanGraphSearch<small>Reasoning mode</small></th>
                   <td headers="memory-off method-off-4 group-fate fate-0" class="group-start"><strong>56</strong></td>
                   <td headers="memory-off method-off-4 group-fate fate-1" class=""><strong>70</strong></td>
@@ -214,9 +212,9 @@
                   <td headers="memory-off method-off-4 group-advanced advanced-1" class="">8</td>
                   <td headers="memory-off method-off-4 group-advanced advanced-2" class=""><strong>10</strong></td>
                   <td headers="memory-off method-off-4 group-advanced advanced-3" class="cost-column">2.53×</td>
-                  <td headers="memory-off method-off-4 overall" class="overall-column">143</td></tr>
+                  </tr>
               </tbody>
-              <tbody class="memory-on"><tr class="memory-band"><th id="memory-on" scope="rowgroup" colspan="18"><span>Failure memory enabled</span></th></tr>
+              <tbody class="memory-on"><tr class="memory-band"><th id="memory-on" scope="rowgroup" colspan="17"><span>Failure memory enabled</span></th></tr>
                 <tr class="" data-method="0" data-memory="on"><th scope="row" id="method-on-0" class="method-column">No retrieval</th>
                   <td headers="memory-on method-on-0 group-fate fate-0" class="group-start">33</td>
                   <td headers="memory-on method-on-0 group-fate fate-1" class="">45</td>
@@ -234,7 +232,7 @@
                   <td headers="memory-on method-on-0 group-advanced advanced-1" class="">6</td>
                   <td headers="memory-on method-on-0 group-advanced advanced-2" class="">7</td>
                   <td headers="memory-on method-on-0 group-advanced advanced-3" class="cost-column">1.00×</td>
-                  <td headers="memory-on method-on-0 overall" class="overall-column">99</td></tr>
+                  </tr>
                 <tr class="" data-method="1" data-memory="on"><th scope="row" id="method-on-1" class="method-column">LeanSearch v2<small>Standard mode</small></th>
                   <td headers="memory-on method-on-1 group-fate fate-0" class="group-start">53</td>
                   <td headers="memory-on method-on-1 group-fate fate-1" class="">63</td>
@@ -252,7 +250,7 @@
                   <td headers="memory-on method-on-1 group-advanced advanced-1" class="">7</td>
                   <td headers="memory-on method-on-1 group-advanced advanced-2" class="">8</td>
                   <td headers="memory-on method-on-1 group-advanced advanced-3" class="cost-column">1.64×</td>
-                  <td headers="memory-on method-on-1 overall" class="overall-column">134</td></tr>
+                  </tr>
                 <tr class="ours" data-method="2" data-memory="on"><th scope="row" id="method-on-2" class="method-column">LeanGraphSearch<small>Standard mode</small></th>
                   <td headers="memory-on method-on-2 group-fate fate-0" class="group-start">54</td>
                   <td headers="memory-on method-on-2 group-fate fate-1" class="">68</td>
@@ -270,7 +268,7 @@
                   <td headers="memory-on method-on-2 group-advanced advanced-1" class="">9</td>
                   <td headers="memory-on method-on-2 group-advanced advanced-2" class="">9</td>
                   <td headers="memory-on method-on-2 group-advanced advanced-3" class="cost-column">1.61×</td>
-                  <td headers="memory-on method-on-2 overall" class="overall-column">142</td></tr>
+                  </tr>
                 <tr class="" data-method="3" data-memory="on"><th scope="row" id="method-on-3" class="method-column">LeanSearch v2<small>Reasoning mode</small></th>
                   <td headers="memory-on method-on-3 group-fate fate-0" class="group-start">54</td>
                   <td headers="memory-on method-on-3 group-fate fate-1" class="">66</td>
@@ -288,7 +286,7 @@
                   <td headers="memory-on method-on-3 group-advanced advanced-1" class=""><strong>10</strong></td>
                   <td headers="memory-on method-on-3 group-advanced advanced-2" class=""><strong>12</strong></td>
                   <td headers="memory-on method-on-3 group-advanced advanced-3" class="cost-column">2.31×</td>
-                  <td headers="memory-on method-on-3 overall" class="overall-column">142</td></tr>
+                  </tr>
                 <tr class="ours" data-method="4" data-memory="on"><th scope="row" id="method-on-4" class="method-column">LeanGraphSearch<small>Reasoning mode</small></th>
                   <td headers="memory-on method-on-4 group-fate fate-0" class="group-start"><strong>58</strong></td>
                   <td headers="memory-on method-on-4 group-fate fate-1" class=""><strong>75</strong></td>
@@ -306,7 +304,7 @@
                   <td headers="memory-on method-on-4 group-advanced advanced-1" class="">9</td>
                   <td headers="memory-on method-on-4 group-advanced advanced-2" class=""><strong>12</strong></td>
                   <td headers="memory-on method-on-4 group-advanced advanced-3" class="cost-column">2.20×</td>
-                  <td headers="memory-on method-on-4 overall" class="overall-column"><strong>151</strong></td></tr>
+                  </tr>
               </tbody>
             </table>
           </div>
@@ -315,7 +313,7 @@
               <caption>Full theorem-proving results · Paper Tables 3–5</caption>
               <thead><tr><th id="compact-method" scope="col">Retrieval condition</th><th id="compact-8" scope="col">@8</th><th id="compact-16" scope="col">@16</th><th id="compact-32" scope="col">@32</th><th id="compact-cost" scope="col">Cost ↓</th></tr></thead>
               <tbody><tr class="memory-band memory-off"><th id="compact-memory-off" colspan="5" scope="rowgroup">Failure memory disabled</th></tr>
-                <tr class="compact-benchmark"><th colspan="5" id="compact-fate-off">FATE-H<small>100 problems</small></th></tr>
+                <tr class="compact-benchmark"><th colspan="5" id="compact-fate-off">FATE-H</th></tr>
                 <tr class="" data-compact-method="0" data-memory="off" data-benchmark="fate"><th scope="row" id="compact-fate-off-0">No retrieval</th>
                   <td class="" headers="compact-memory-off compact-fate-off compact-fate-off-0 compact-8">35</td>
                   <td class="" headers="compact-memory-off compact-fate-off compact-fate-off-0 compact-16">42</td>
@@ -346,7 +344,7 @@
                   <td class="" headers="compact-memory-off compact-fate-off compact-fate-off-4 compact-32"><strong>75</strong></td>
                   <td class="cost-column" headers="compact-memory-off compact-fate-off compact-fate-off-4 compact-cost">1.37×</td>
                 </tr>
-                <tr class="compact-benchmark"><th colspan="5" id="compact-mpr-off">MathlibMPR-Prop<small>50 problems</small></th></tr>
+                <tr class="compact-benchmark"><th colspan="5" id="compact-mpr-off">MathlibMPR-Prop</th></tr>
                 <tr class="" data-compact-method="0" data-memory="off" data-benchmark="mpr"><th scope="row" id="compact-mpr-off-0">No retrieval</th>
                   <td class="" headers="compact-memory-off compact-mpr-off compact-mpr-off-0 compact-8">15</td>
                   <td class="" headers="compact-memory-off compact-mpr-off compact-mpr-off-0 compact-16">18</td>
@@ -377,7 +375,7 @@
                   <td class="" headers="compact-memory-off compact-mpr-off compact-mpr-off-4 compact-32">39</td>
                   <td class="cost-column" headers="compact-memory-off compact-mpr-off compact-mpr-off-4 compact-cost">1.06×</td>
                 </tr>
-                <tr class="compact-benchmark"><th colspan="5" id="compact-basic-off">Lean-IMO Basic<small>30 problems</small></th></tr>
+                <tr class="compact-benchmark"><th colspan="5" id="compact-basic-off">Lean-IMO Basic</th></tr>
                 <tr class="" data-compact-method="0" data-memory="off" data-benchmark="basic"><th scope="row" id="compact-basic-off-0">No retrieval</th>
                   <td class="" headers="compact-memory-off compact-basic-off compact-basic-off-0 compact-8">12</td>
                   <td class="" headers="compact-memory-off compact-basic-off compact-basic-off-0 compact-16">16</td>
@@ -408,7 +406,7 @@
                   <td class="" headers="compact-memory-off compact-basic-off compact-basic-off-4 compact-32">19</td>
                   <td class="cost-column" headers="compact-memory-off compact-basic-off compact-basic-off-4 compact-cost">2.09×</td>
                 </tr>
-                <tr class="compact-benchmark"><th colspan="5" id="compact-advanced-off">Lean-IMO Advanced<small>30 problems</small></th></tr>
+                <tr class="compact-benchmark"><th colspan="5" id="compact-advanced-off">Lean-IMO Advanced</th></tr>
                 <tr class="" data-compact-method="0" data-memory="off" data-benchmark="advanced"><th scope="row" id="compact-advanced-off-0">No retrieval</th>
                   <td class="" headers="compact-memory-off compact-advanced-off compact-advanced-off-0 compact-8"><strong>7</strong></td>
                   <td class="" headers="compact-memory-off compact-advanced-off compact-advanced-off-0 compact-16">7</td>
@@ -439,15 +437,9 @@
                   <td class="" headers="compact-memory-off compact-advanced-off compact-advanced-off-4 compact-32"><strong>10</strong></td>
                   <td class="cost-column" headers="compact-memory-off compact-advanced-off compact-advanced-off-4 compact-cost">2.53×</td>
                 </tr>
-                <tr class="compact-benchmark"><th colspan="4">Overall · 210 problems</th><th id="compact-overall-off">Solved @32</th></tr>
-                <tr class=""><th scope="row" colspan="4" id="compact-total-off-0">No retrieval</th><td class="overall-column" headers="compact-memory-off compact-total-off-0 compact-overall-off">94</td></tr>
-                <tr class=""><th scope="row" colspan="4" id="compact-total-off-1">LeanSearch v2<small>Standard mode</small></th><td class="overall-column" headers="compact-memory-off compact-total-off-1 compact-overall-off">136</td></tr>
-                <tr class="ours"><th scope="row" colspan="4" id="compact-total-off-2">LeanGraphSearch<small>Standard mode</small></th><td class="overall-column" headers="compact-memory-off compact-total-off-2 compact-overall-off">143</td></tr>
-                <tr class=""><th scope="row" colspan="4" id="compact-total-off-3">LeanSearch v2<small>Reasoning mode</small></th><td class="overall-column" headers="compact-memory-off compact-total-off-3 compact-overall-off"><strong>145</strong></td></tr>
-                <tr class="ours"><th scope="row" colspan="4" id="compact-total-off-4">LeanGraphSearch<small>Reasoning mode</small></th><td class="overall-column" headers="compact-memory-off compact-total-off-4 compact-overall-off">143</td></tr>
               </tbody>
               <tbody><tr class="memory-band memory-on"><th id="compact-memory-on" colspan="5" scope="rowgroup">Failure memory enabled</th></tr>
-                <tr class="compact-benchmark"><th colspan="5" id="compact-fate-on">FATE-H<small>100 problems</small></th></tr>
+                <tr class="compact-benchmark"><th colspan="5" id="compact-fate-on">FATE-H</th></tr>
                 <tr class="" data-compact-method="0" data-memory="on" data-benchmark="fate"><th scope="row" id="compact-fate-on-0">No retrieval</th>
                   <td class="" headers="compact-memory-on compact-fate-on compact-fate-on-0 compact-8">33</td>
                   <td class="" headers="compact-memory-on compact-fate-on compact-fate-on-0 compact-16">45</td>
@@ -478,7 +470,7 @@
                   <td class="" headers="compact-memory-on compact-fate-on compact-fate-on-4 compact-32"><strong>81</strong></td>
                   <td class="cost-column" headers="compact-memory-on compact-fate-on compact-fate-on-4 compact-cost">1.22×</td>
                 </tr>
-                <tr class="compact-benchmark"><th colspan="5" id="compact-mpr-on">MathlibMPR-Prop<small>50 problems</small></th></tr>
+                <tr class="compact-benchmark"><th colspan="5" id="compact-mpr-on">MathlibMPR-Prop</th></tr>
                 <tr class="" data-compact-method="0" data-memory="on" data-benchmark="mpr"><th scope="row" id="compact-mpr-on-0">No retrieval</th>
                   <td class="" headers="compact-memory-on compact-mpr-on compact-mpr-on-0 compact-8">15</td>
                   <td class="" headers="compact-memory-on compact-mpr-on compact-mpr-on-0 compact-16">19</td>
@@ -509,7 +501,7 @@
                   <td class="" headers="compact-memory-on compact-mpr-on compact-mpr-on-4 compact-32"><strong>40</strong></td>
                   <td class="cost-column" headers="compact-memory-on compact-mpr-on compact-mpr-on-4 compact-cost">0.96×</td>
                 </tr>
-                <tr class="compact-benchmark"><th colspan="5" id="compact-basic-on">Lean-IMO Basic<small>30 problems</small></th></tr>
+                <tr class="compact-benchmark"><th colspan="5" id="compact-basic-on">Lean-IMO Basic</th></tr>
                 <tr class="" data-compact-method="0" data-memory="on" data-benchmark="basic"><th scope="row" id="compact-basic-on-0">No retrieval</th>
                   <td class="" headers="compact-memory-on compact-basic-on compact-basic-on-0 compact-8">13</td>
                   <td class="" headers="compact-memory-on compact-basic-on compact-basic-on-0 compact-16">15</td>
@@ -540,7 +532,7 @@
                   <td class="" headers="compact-memory-on compact-basic-on compact-basic-on-4 compact-32">18</td>
                   <td class="cost-column" headers="compact-memory-on compact-basic-on compact-basic-on-4 compact-cost">2.25×</td>
                 </tr>
-                <tr class="compact-benchmark"><th colspan="5" id="compact-advanced-on">Lean-IMO Advanced<small>30 problems</small></th></tr>
+                <tr class="compact-benchmark"><th colspan="5" id="compact-advanced-on">Lean-IMO Advanced</th></tr>
                 <tr class="" data-compact-method="0" data-memory="on" data-benchmark="advanced"><th scope="row" id="compact-advanced-on-0">No retrieval</th>
                   <td class="" headers="compact-memory-on compact-advanced-on compact-advanced-on-0 compact-8">5</td>
                   <td class="" headers="compact-memory-on compact-advanced-on compact-advanced-on-0 compact-16">6</td>
@@ -571,22 +563,16 @@
                   <td class="" headers="compact-memory-on compact-advanced-on compact-advanced-on-4 compact-32"><strong>12</strong></td>
                   <td class="cost-column" headers="compact-memory-on compact-advanced-on compact-advanced-on-4 compact-cost">2.20×</td>
                 </tr>
-                <tr class="compact-benchmark"><th colspan="4">Overall · 210 problems</th><th id="compact-overall-on">Solved @32</th></tr>
-                <tr class=""><th scope="row" colspan="4" id="compact-total-on-0">No retrieval</th><td class="overall-column" headers="compact-memory-on compact-total-on-0 compact-overall-on">99</td></tr>
-                <tr class=""><th scope="row" colspan="4" id="compact-total-on-1">LeanSearch v2<small>Standard mode</small></th><td class="overall-column" headers="compact-memory-on compact-total-on-1 compact-overall-on">134</td></tr>
-                <tr class="ours"><th scope="row" colspan="4" id="compact-total-on-2">LeanGraphSearch<small>Standard mode</small></th><td class="overall-column" headers="compact-memory-on compact-total-on-2 compact-overall-on">142</td></tr>
-                <tr class=""><th scope="row" colspan="4" id="compact-total-on-3">LeanSearch v2<small>Reasoning mode</small></th><td class="overall-column" headers="compact-memory-on compact-total-on-3 compact-overall-on">142</td></tr>
-                <tr class="ours"><th scope="row" colspan="4" id="compact-total-on-4">LeanGraphSearch<small>Reasoning mode</small></th><td class="overall-column" headers="compact-memory-on compact-total-on-4 compact-overall-on"><strong>151</strong></td></tr>
               </tbody>
             </table>
           </div>
-          <p class="result-note" id="proving-note">@8, @16, and @32 report the number of problems solved within 8, 16, and 32 reflection turns, following the paper's pass@k convention. Counts are not percentages. Cost is full-budget API expenditure relative to no retrieval in the same evaluation set and memory setting. Overall is the sum of solved @32 counts across all four evaluation sets (210 problems). Bold marks the best solved counts within each memory setting, including ties. Lower relative cost is better.</p>
+          <p class="result-note" id="proving-note">@8, @16, and @32 report the number of problems solved within 8, 16, and 32 reflection turns, following the paper's pass@k convention. Counts are not percentages. Cost is full-budget API expenditure relative to no retrieval in the same evaluation set and memory setting. Bold marks the best solved counts within each memory setting, including ties. Lower relative cost is better.</p>
         </div>
         <div id="panel-cost" role="tabpanel" aria-labelledby="tab-cost" tabindex="0" hidden>
           <h3>Less API expenditure per completed proof.</h3>
-          <p>Across the union of 210 theorem-proving problems, standard-mode LeanGraphSearch has the lowest API cost per solved problem in both memory settings.</p>
+          <p>Across the theorem-proving benchmarks, standard-mode LeanGraphSearch has the lowest API cost per solved problem in both memory settings.</p>
           <figure class="cost-figure"><a href="assets/cost.svg" aria-label="View the cost comparison at full resolution"><img src="assets/cost.svg" width="1000" height="490" loading="lazy" alt="API cost per solved problem in US dollars. Memory disabled: no retrieval 13.86, LeanSearch standard 11.22, LeanGraphSearch standard 10.46, LeanSearch reasoning 13.72, LeanGraphSearch reasoning 13.89. Memory enabled: 14.28, 11.58, 10.94, 14.24, 13.02 respectively."></a><figcaption>Redrawn from Paper Figure 3. Total API expenditure, including unsuccessful runs, divided by problems solved within 32 turns. Lower is better.</figcaption></figure>
-          <p class="result-note">With memory enabled, reasoning-mode LeanGraphSearch solves the most problems overall (151/210), at $13.02 per solved problem. Standard mode offers the lowest cost per solved problem ($10.94) in that setting. These are distinct accuracy–cost operating points.</p>
+          <p class="result-note">With memory enabled, reasoning-mode LeanGraphSearch costs $13.02 per solved problem. Standard mode offers the lowest cost per solved problem ($10.94) in that setting. These are distinct accuracy–cost operating points.</p>
         </div>
       </div>
     </section>
