@@ -97,19 +97,226 @@
           <p class="result-note">Covered@k requires every premise group in at least one annotated proof route to be retrieved. MathlibMPR rows are arithmetic means over Gemini 3.1 Pro and Claude Sonnet 5. LeanExplore and LeanFinder results are quoted in the paper from Gao et al. (2026).</p>
         </div>
         <div id="panel-proving" role="tabpanel" aria-labelledby="tab-proving" tabindex="0" hidden>
-          <h3>Better retrieval can lead to more completed proofs.</h3>
-          <p>Gemini 3.1 Pro is the prover backbone. Each problem has a budget of up to 32 reflection turns. Select a benchmark and failure-memory setting to compare matched configurations.</p>
-          <div class="controls"><label>Benchmark<select id="benchmark"><option value="fate">FATE-H · 100 problems</option><option value="mpr">MathlibMPR-Prop · 50 problems</option><option value="basic">Lean-IMO Basic · 30 problems</option><option value="advanced">Lean-IMO Advanced · 30 problems</option></select></label><label>Failure memory<select id="memory"><option value="on">Enabled</option><option value="off">Disabled</option></select></label></div>
-          <div class="table-wrap" role="region" aria-label="Theorem proving results" tabindex="0"><table><caption id="proving-caption">FATE-H · Failure memory enabled · Paper Table 3</caption><thead><tr><th scope="col">Retrieval condition</th><th scope="col">Solved @8</th><th scope="col">Solved @16</th><th scope="col">Solved @32</th><th scope="col">Relative cost</th></tr></thead><tbody id="proving-body">
-            <tr><th scope="row">No retrieval</th><td>33</td><td>45</td><td>52</td><td>1.00×</td></tr>
-            <tr><th scope="row">LeanSearch v2 <small>Standard</small></th><td>53</td><td>63</td><td>71</td><td>1.01×</td></tr>
-            <tr class="ours"><th scope="row">LeanGraphSearch <small>Standard</small></th><td>54</td><td>68</td><td>73</td><td>1.01×</td></tr>
-            <tr><th scope="row">LeanSearch v2 <small>Reasoning</small></th><td>54</td><td>66</td><td>73</td><td>1.31×</td></tr>
-            <tr class="ours"><th scope="row">LeanGraphSearch <small>Reasoning</small></th><td>58</td><td>75</td><td>81</td><td>1.22×</td></tr>
-          </tbody></table></div>
-          <p id="proving-status" class="sr-only" aria-live="polite"></p>
-          <p class="result-note">Values are numbers of solved problems, not percentages. “@k” denotes the reflection-turn budget, following the paper's pass@k convention. Relative cost is full-budget API expenditure normalized by no retrieval within the same benchmark and memory setting; lower is better. Results transcribed from Tables 3–5.</p>
-          <noscript><p>Interactive comparisons require JavaScript. The default table shows FATE-H with failure memory enabled; all settings are available in the paper.</p></noscript>
+          <div class="proving-intro"><h3>Theorem proving across 210 problems</h3><p>All evaluation sets, reflection budgets, and retrieval configurations in one comparison. Gemini 3.1 Pro is the prover backbone; failure memory is evaluated both disabled and enabled.</p></div>
+          <div class="proving-summary" aria-label="Selected results at 32 turns with failure memory enabled">
+            <div><strong>151<span> / 210</span></strong><p>Problems solved overall</p><small>Reasoning mode · memory enabled · 32 turns</small></div>
+            <div><strong>81<span> / 100</span></strong><p>FATE-H problems solved</p><small>Reasoning mode · memory enabled · 32 turns</small></div>
+            <div><strong>+9</strong><p>More solved than LeanSearch v2</p><small>Overall · reasoning mode · memory enabled · 32 turns</small></div>
+          </div>
+          <p class="proving-legend"><span class="legend-swatch" aria-hidden="true"></span> LeanGraphSearch rows <span class="legend-best">Bold</span> best within each memory setting (ties included). <span>Higher solved counts and lower costs are better.</span></p>
+          <div class="table-wrap proving-table-wrap" role="region" aria-label="Complete theorem proving results, scroll horizontally on smaller screens" tabindex="0">
+            <table class="proving-master" aria-describedby="proving-note">
+              <caption>Full theorem-proving results · Paper Tables 3–5</caption>
+              <thead><tr><th scope="col" rowspan="2" class="method-column">Retrieval condition</th>
+                <th scope="colgroup" colspan="4" id="group-fate" class="benchmark-group">FATE-H<small>100 problems</small></th>
+                <th scope="colgroup" colspan="4" id="group-mpr" class="benchmark-group">MathlibMPR-Prop<small>50 problems</small></th>
+                <th scope="colgroup" colspan="4" id="group-basic" class="benchmark-group">Lean-IMO Basic<small>30 problems</small></th>
+                <th scope="colgroup" colspan="4" id="group-advanced" class="benchmark-group">Lean-IMO Advanced<small>30 problems</small></th>
+                <th scope="col" rowspan="2" id="overall" class="overall-column">Overall<small>Solved @32<br>out of 210</small></th></tr><tr>
+                <th scope="col" id="fate-0" class="group-start">@8</th>
+                <th scope="col" id="fate-1" class="">@16</th>
+                <th scope="col" id="fate-2" class="">@32</th>
+                <th scope="col" id="fate-3" class="cost-column">Cost ↓</th>
+                <th scope="col" id="mpr-0" class="group-start">@8</th>
+                <th scope="col" id="mpr-1" class="">@16</th>
+                <th scope="col" id="mpr-2" class="">@32</th>
+                <th scope="col" id="mpr-3" class="cost-column">Cost ↓</th>
+                <th scope="col" id="basic-0" class="group-start">@8</th>
+                <th scope="col" id="basic-1" class="">@16</th>
+                <th scope="col" id="basic-2" class="">@32</th>
+                <th scope="col" id="basic-3" class="cost-column">Cost ↓</th>
+                <th scope="col" id="advanced-0" class="group-start">@8</th>
+                <th scope="col" id="advanced-1" class="">@16</th>
+                <th scope="col" id="advanced-2" class="">@32</th>
+                <th scope="col" id="advanced-3" class="cost-column">Cost ↓</th>
+              </tr></thead>
+              <tbody class="memory-off"><tr class="memory-band"><th id="memory-off" scope="rowgroup" colspan="18"><span>Failure memory disabled</span></th></tr>
+                <tr class="" data-method="0" data-memory="off"><th scope="row" id="method-off-0" class="method-column">No retrieval</th>
+                  <td headers="memory-off method-off-0 group-fate fate-0" class="group-start">35</td>
+                  <td headers="memory-off method-off-0 group-fate fate-1" class="">42</td>
+                  <td headers="memory-off method-off-0 group-fate fate-2" class="">47</td>
+                  <td headers="memory-off method-off-0 group-fate fate-3" class="cost-column"><strong>1.00×</strong></td>
+                  <td headers="memory-off method-off-0 group-mpr mpr-0" class="group-start">15</td>
+                  <td headers="memory-off method-off-0 group-mpr mpr-1" class="">18</td>
+                  <td headers="memory-off method-off-0 group-mpr mpr-2" class="">23</td>
+                  <td headers="memory-off method-off-0 group-mpr mpr-3" class="cost-column">1.00×</td>
+                  <td headers="memory-off method-off-0 group-basic basic-0" class="group-start">12</td>
+                  <td headers="memory-off method-off-0 group-basic basic-1" class="">16</td>
+                  <td headers="memory-off method-off-0 group-basic basic-2" class="">16</td>
+                  <td headers="memory-off method-off-0 group-basic basic-3" class="cost-column"><strong>1.00×</strong></td>
+                  <td headers="memory-off method-off-0 group-advanced advanced-0" class="group-start"><strong>7</strong></td>
+                  <td headers="memory-off method-off-0 group-advanced advanced-1" class="">7</td>
+                  <td headers="memory-off method-off-0 group-advanced advanced-2" class="">8</td>
+                  <td headers="memory-off method-off-0 group-advanced advanced-3" class="cost-column"><strong>1.00×</strong></td>
+                  <td headers="memory-off method-off-0 overall" class="overall-column">94</td></tr>
+                <tr class="" data-method="1" data-memory="off"><th scope="row" id="method-off-1" class="method-column">LeanSearch v2<small>Standard mode</small></th>
+                  <td headers="memory-off method-off-1 group-fate fate-0" class="group-start">49</td>
+                  <td headers="memory-off method-off-1 group-fate fate-1" class="">61</td>
+                  <td headers="memory-off method-off-1 group-fate fate-2" class="">70</td>
+                  <td headers="memory-off method-off-1 group-fate fate-3" class="cost-column">1.11×</td>
+                  <td headers="memory-off method-off-1 group-mpr mpr-0" class="group-start">31</td>
+                  <td headers="memory-off method-off-1 group-mpr mpr-1" class="">35</td>
+                  <td headers="memory-off method-off-1 group-mpr mpr-2" class="">39</td>
+                  <td headers="memory-off method-off-1 group-mpr mpr-3" class="cost-column">0.82×</td>
+                  <td headers="memory-off method-off-1 group-basic basic-0" class="group-start">15</td>
+                  <td headers="memory-off method-off-1 group-basic basic-1" class="">15</td>
+                  <td headers="memory-off method-off-1 group-basic basic-2" class="">18</td>
+                  <td headers="memory-off method-off-1 group-basic basic-3" class="cost-column">1.49×</td>
+                  <td headers="memory-off method-off-1 group-advanced advanced-0" class="group-start">4</td>
+                  <td headers="memory-off method-off-1 group-advanced advanced-1" class="">8</td>
+                  <td headers="memory-off method-off-1 group-advanced advanced-2" class="">9</td>
+                  <td headers="memory-off method-off-1 group-advanced advanced-3" class="cost-column">1.82×</td>
+                  <td headers="memory-off method-off-1 overall" class="overall-column">136</td></tr>
+                <tr class="ours" data-method="2" data-memory="off"><th scope="row" id="method-off-2" class="method-column">LeanGraphSearch<small>Standard mode</small></th>
+                  <td headers="memory-off method-off-2 group-fate fate-0" class="group-start">53</td>
+                  <td headers="memory-off method-off-2 group-fate fate-1" class="">69</td>
+                  <td headers="memory-off method-off-2 group-fate fate-2" class="">71</td>
+                  <td headers="memory-off method-off-2 group-fate fate-3" class="cost-column">1.09×</td>
+                  <td headers="memory-off method-off-2 group-mpr mpr-0" class="group-start">32</td>
+                  <td headers="memory-off method-off-2 group-mpr mpr-1" class=""><strong>38</strong></td>
+                  <td headers="memory-off method-off-2 group-mpr mpr-2" class=""><strong>41</strong></td>
+                  <td headers="memory-off method-off-2 group-mpr mpr-3" class="cost-column"><strong>0.78×</strong></td>
+                  <td headers="memory-off method-off-2 group-basic basic-0" class="group-start"><strong>16</strong></td>
+                  <td headers="memory-off method-off-2 group-basic basic-1" class=""><strong>17</strong></td>
+                  <td headers="memory-off method-off-2 group-basic basic-2" class=""><strong>21</strong></td>
+                  <td headers="memory-off method-off-2 group-basic basic-3" class="cost-column">1.40×</td>
+                  <td headers="memory-off method-off-2 group-advanced advanced-0" class="group-start">5</td>
+                  <td headers="memory-off method-off-2 group-advanced advanced-1" class=""><strong>9</strong></td>
+                  <td headers="memory-off method-off-2 group-advanced advanced-2" class=""><strong>10</strong></td>
+                  <td headers="memory-off method-off-2 group-advanced advanced-3" class="cost-column">1.88×</td>
+                  <td headers="memory-off method-off-2 overall" class="overall-column">143</td></tr>
+                <tr class="" data-method="3" data-memory="off"><th scope="row" id="method-off-3" class="method-column">LeanSearch v2<small>Reasoning mode</small></th>
+                  <td headers="memory-off method-off-3 group-fate fate-0" class="group-start">52</td>
+                  <td headers="memory-off method-off-3 group-fate fate-1" class="">68</td>
+                  <td headers="memory-off method-off-3 group-fate fate-2" class="">73</td>
+                  <td headers="memory-off method-off-3 group-fate fate-3" class="cost-column">1.41×</td>
+                  <td headers="memory-off method-off-3 group-mpr mpr-0" class="group-start"><strong>33</strong></td>
+                  <td headers="memory-off method-off-3 group-mpr mpr-1" class="">37</td>
+                  <td headers="memory-off method-off-3 group-mpr mpr-2" class=""><strong>41</strong></td>
+                  <td headers="memory-off method-off-3 group-mpr mpr-3" class="cost-column">1.01×</td>
+                  <td headers="memory-off method-off-3 group-basic basic-0" class="group-start">14</td>
+                  <td headers="memory-off method-off-3 group-basic basic-1" class="">16</td>
+                  <td headers="memory-off method-off-3 group-basic basic-2" class=""><strong>21</strong></td>
+                  <td headers="memory-off method-off-3 group-basic basic-3" class="cost-column">2.04×</td>
+                  <td headers="memory-off method-off-3 group-advanced advanced-0" class="group-start"><strong>7</strong></td>
+                  <td headers="memory-off method-off-3 group-advanced advanced-1" class=""><strong>9</strong></td>
+                  <td headers="memory-off method-off-3 group-advanced advanced-2" class=""><strong>10</strong></td>
+                  <td headers="memory-off method-off-3 group-advanced advanced-3" class="cost-column">2.56×</td>
+                  <td headers="memory-off method-off-3 overall" class="overall-column"><strong>145</strong></td></tr>
+                <tr class="ours" data-method="4" data-memory="off"><th scope="row" id="method-off-4" class="method-column">LeanGraphSearch<small>Reasoning mode</small></th>
+                  <td headers="memory-off method-off-4 group-fate fate-0" class="group-start"><strong>56</strong></td>
+                  <td headers="memory-off method-off-4 group-fate fate-1" class=""><strong>70</strong></td>
+                  <td headers="memory-off method-off-4 group-fate fate-2" class=""><strong>75</strong></td>
+                  <td headers="memory-off method-off-4 group-fate fate-3" class="cost-column">1.37×</td>
+                  <td headers="memory-off method-off-4 group-mpr mpr-0" class="group-start"><strong>33</strong></td>
+                  <td headers="memory-off method-off-4 group-mpr mpr-1" class=""><strong>38</strong></td>
+                  <td headers="memory-off method-off-4 group-mpr mpr-2" class="">39</td>
+                  <td headers="memory-off method-off-4 group-mpr mpr-3" class="cost-column">1.06×</td>
+                  <td headers="memory-off method-off-4 group-basic basic-0" class="group-start">14</td>
+                  <td headers="memory-off method-off-4 group-basic basic-1" class="">16</td>
+                  <td headers="memory-off method-off-4 group-basic basic-2" class="">19</td>
+                  <td headers="memory-off method-off-4 group-basic basic-3" class="cost-column">2.09×</td>
+                  <td headers="memory-off method-off-4 group-advanced advanced-0" class="group-start"><strong>7</strong></td>
+                  <td headers="memory-off method-off-4 group-advanced advanced-1" class="">8</td>
+                  <td headers="memory-off method-off-4 group-advanced advanced-2" class=""><strong>10</strong></td>
+                  <td headers="memory-off method-off-4 group-advanced advanced-3" class="cost-column">2.53×</td>
+                  <td headers="memory-off method-off-4 overall" class="overall-column">143</td></tr>
+              </tbody>
+              <tbody class="memory-on"><tr class="memory-band"><th id="memory-on" scope="rowgroup" colspan="18"><span>Failure memory enabled</span></th></tr>
+                <tr class="" data-method="0" data-memory="on"><th scope="row" id="method-on-0" class="method-column">No retrieval</th>
+                  <td headers="memory-on method-on-0 group-fate fate-0" class="group-start">33</td>
+                  <td headers="memory-on method-on-0 group-fate fate-1" class="">45</td>
+                  <td headers="memory-on method-on-0 group-fate fate-2" class="">52</td>
+                  <td headers="memory-on method-on-0 group-fate fate-3" class="cost-column"><strong>1.00×</strong></td>
+                  <td headers="memory-on method-on-0 group-mpr mpr-0" class="group-start">15</td>
+                  <td headers="memory-on method-on-0 group-mpr mpr-1" class="">19</td>
+                  <td headers="memory-on method-on-0 group-mpr mpr-2" class="">23</td>
+                  <td headers="memory-on method-on-0 group-mpr mpr-3" class="cost-column">1.00×</td>
+                  <td headers="memory-on method-on-0 group-basic basic-0" class="group-start">13</td>
+                  <td headers="memory-on method-on-0 group-basic basic-1" class="">15</td>
+                  <td headers="memory-on method-on-0 group-basic basic-2" class="">17</td>
+                  <td headers="memory-on method-on-0 group-basic basic-3" class="cost-column"><strong>1.00×</strong></td>
+                  <td headers="memory-on method-on-0 group-advanced advanced-0" class="group-start">5</td>
+                  <td headers="memory-on method-on-0 group-advanced advanced-1" class="">6</td>
+                  <td headers="memory-on method-on-0 group-advanced advanced-2" class="">7</td>
+                  <td headers="memory-on method-on-0 group-advanced advanced-3" class="cost-column"><strong>1.00×</strong></td>
+                  <td headers="memory-on method-on-0 overall" class="overall-column">99</td></tr>
+                <tr class="" data-method="1" data-memory="on"><th scope="row" id="method-on-1" class="method-column">LeanSearch v2<small>Standard mode</small></th>
+                  <td headers="memory-on method-on-1 group-fate fate-0" class="group-start">53</td>
+                  <td headers="memory-on method-on-1 group-fate fate-1" class="">63</td>
+                  <td headers="memory-on method-on-1 group-fate fate-2" class="">71</td>
+                  <td headers="memory-on method-on-1 group-fate fate-3" class="cost-column">1.01×</td>
+                  <td headers="memory-on method-on-1 group-mpr mpr-0" class="group-start">33</td>
+                  <td headers="memory-on method-on-1 group-mpr mpr-1" class="">35</td>
+                  <td headers="memory-on method-on-1 group-mpr mpr-2" class="">39</td>
+                  <td headers="memory-on method-on-1 group-mpr mpr-3" class="cost-column"><strong>0.76×</strong></td>
+                  <td headers="memory-on method-on-1 group-basic basic-0" class="group-start">13</td>
+                  <td headers="memory-on method-on-1 group-basic basic-1" class="">16</td>
+                  <td headers="memory-on method-on-1 group-basic basic-2" class="">16</td>
+                  <td headers="memory-on method-on-1 group-basic basic-3" class="cost-column">1.61×</td>
+                  <td headers="memory-on method-on-1 group-advanced advanced-0" class="group-start">6</td>
+                  <td headers="memory-on method-on-1 group-advanced advanced-1" class="">7</td>
+                  <td headers="memory-on method-on-1 group-advanced advanced-2" class="">8</td>
+                  <td headers="memory-on method-on-1 group-advanced advanced-3" class="cost-column">1.64×</td>
+                  <td headers="memory-on method-on-1 overall" class="overall-column">134</td></tr>
+                <tr class="ours" data-method="2" data-memory="on"><th scope="row" id="method-on-2" class="method-column">LeanGraphSearch<small>Standard mode</small></th>
+                  <td headers="memory-on method-on-2 group-fate fate-0" class="group-start">54</td>
+                  <td headers="memory-on method-on-2 group-fate fate-1" class="">68</td>
+                  <td headers="memory-on method-on-2 group-fate fate-2" class="">73</td>
+                  <td headers="memory-on method-on-2 group-fate fate-3" class="cost-column">1.01×</td>
+                  <td headers="memory-on method-on-2 group-mpr mpr-0" class="group-start"><strong>35</strong></td>
+                  <td headers="memory-on method-on-2 group-mpr mpr-1" class=""><strong>37</strong></td>
+                  <td headers="memory-on method-on-2 group-mpr mpr-2" class=""><strong>40</strong></td>
+                  <td headers="memory-on method-on-2 group-mpr mpr-3" class="cost-column">0.78×</td>
+                  <td headers="memory-on method-on-2 group-basic basic-0" class="group-start">15</td>
+                  <td headers="memory-on method-on-2 group-basic basic-1" class=""><strong>18</strong></td>
+                  <td headers="memory-on method-on-2 group-basic basic-2" class=""><strong>20</strong></td>
+                  <td headers="memory-on method-on-2 group-basic basic-3" class="cost-column">1.64×</td>
+                  <td headers="memory-on method-on-2 group-advanced advanced-0" class="group-start"><strong>7</strong></td>
+                  <td headers="memory-on method-on-2 group-advanced advanced-1" class="">9</td>
+                  <td headers="memory-on method-on-2 group-advanced advanced-2" class="">9</td>
+                  <td headers="memory-on method-on-2 group-advanced advanced-3" class="cost-column">1.61×</td>
+                  <td headers="memory-on method-on-2 overall" class="overall-column">142</td></tr>
+                <tr class="" data-method="3" data-memory="on"><th scope="row" id="method-on-3" class="method-column">LeanSearch v2<small>Reasoning mode</small></th>
+                  <td headers="memory-on method-on-3 group-fate fate-0" class="group-start">54</td>
+                  <td headers="memory-on method-on-3 group-fate fate-1" class="">66</td>
+                  <td headers="memory-on method-on-3 group-fate fate-2" class="">73</td>
+                  <td headers="memory-on method-on-3 group-fate fate-3" class="cost-column">1.31×</td>
+                  <td headers="memory-on method-on-3 group-mpr mpr-0" class="group-start">33</td>
+                  <td headers="memory-on method-on-3 group-mpr mpr-1" class="">36</td>
+                  <td headers="memory-on method-on-3 group-mpr mpr-2" class="">39</td>
+                  <td headers="memory-on method-on-3 group-mpr mpr-3" class="cost-column">0.99×</td>
+                  <td headers="memory-on method-on-3 group-basic basic-0" class="group-start"><strong>16</strong></td>
+                  <td headers="memory-on method-on-3 group-basic basic-1" class=""><strong>18</strong></td>
+                  <td headers="memory-on method-on-3 group-basic basic-2" class="">18</td>
+                  <td headers="memory-on method-on-3 group-basic basic-3" class="cost-column">1.94×</td>
+                  <td headers="memory-on method-on-3 group-advanced advanced-0" class="group-start"><strong>7</strong></td>
+                  <td headers="memory-on method-on-3 group-advanced advanced-1" class=""><strong>10</strong></td>
+                  <td headers="memory-on method-on-3 group-advanced advanced-2" class=""><strong>12</strong></td>
+                  <td headers="memory-on method-on-3 group-advanced advanced-3" class="cost-column">2.31×</td>
+                  <td headers="memory-on method-on-3 overall" class="overall-column">142</td></tr>
+                <tr class="ours" data-method="4" data-memory="on"><th scope="row" id="method-on-4" class="method-column">LeanGraphSearch<small>Reasoning mode</small></th>
+                  <td headers="memory-on method-on-4 group-fate fate-0" class="group-start"><strong>58</strong></td>
+                  <td headers="memory-on method-on-4 group-fate fate-1" class=""><strong>75</strong></td>
+                  <td headers="memory-on method-on-4 group-fate fate-2" class=""><strong>81</strong></td>
+                  <td headers="memory-on method-on-4 group-fate fate-3" class="cost-column">1.22×</td>
+                  <td headers="memory-on method-on-4 group-mpr mpr-0" class="group-start">31</td>
+                  <td headers="memory-on method-on-4 group-mpr mpr-1" class=""><strong>37</strong></td>
+                  <td headers="memory-on method-on-4 group-mpr mpr-2" class=""><strong>40</strong></td>
+                  <td headers="memory-on method-on-4 group-mpr mpr-3" class="cost-column">0.96×</td>
+                  <td headers="memory-on method-on-4 group-basic basic-0" class="group-start">15</td>
+                  <td headers="memory-on method-on-4 group-basic basic-1" class="">17</td>
+                  <td headers="memory-on method-on-4 group-basic basic-2" class="">18</td>
+                  <td headers="memory-on method-on-4 group-basic basic-3" class="cost-column">2.25×</td>
+                  <td headers="memory-on method-on-4 group-advanced advanced-0" class="group-start"><strong>7</strong></td>
+                  <td headers="memory-on method-on-4 group-advanced advanced-1" class="">9</td>
+                  <td headers="memory-on method-on-4 group-advanced advanced-2" class=""><strong>12</strong></td>
+                  <td headers="memory-on method-on-4 group-advanced advanced-3" class="cost-column">2.20×</td>
+                  <td headers="memory-on method-on-4 overall" class="overall-column"><strong>151</strong></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="result-note" id="proving-note">@8, @16, and @32 report the number of problems solved within 8, 16, and 32 reflection turns, following the paper's pass@k convention. Counts are not percentages. Cost is full-budget API expenditure relative to no retrieval in the same evaluation set and memory setting. Overall is the sum of solved @32 counts across all four evaluation sets (210 problems). Bold marks the best value in each column within a memory setting, including ties; lower relative cost is better.</p>
         </div>
         <div id="panel-cost" role="tabpanel" aria-labelledby="tab-cost" tabindex="0" hidden>
           <h3>Less API expenditure per completed proof.</h3>
