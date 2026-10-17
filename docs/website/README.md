@@ -13,7 +13,8 @@ python3 -m http.server 8000 --directory docs/website
 ```
 
 Open <http://localhost:8000>. No build step or third-party runtime is needed.
-All fonts, figures, scripts, styles, and the paper load locally; there are no
+All fonts, figures, scripts, and styles load locally; paper links point to
+[arXiv:2610.22339](https://arxiv.org/abs/2610.22339). There are no
 analytics, tracking scripts, or external font requests.
 
 ## Content and figures

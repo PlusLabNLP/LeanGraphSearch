@@ -2,6 +2,8 @@
 
 Anonymous supplementary code for **LeanGraphSearch for Formal Theorem Proving**.
 
+[Paper](https://arxiv.org/abs/2610.22339)
+
 This package contains only the shared retrieval/proving implementation and the
 experiments covered by the paper:
 

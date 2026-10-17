@@ -1,6 +1,6 @@
 # Complete package contents
 
-This source package contains **99 files**, totaling **1,262,545 bytes** before ZIP compression.
+This source package contains **99 files**, totaling **1,262,588 bytes** before ZIP compression.
 
 The list below is exhaustive. `SHA256SUMS` covers every file except itself.
 No symlinks, saved experiment outputs, credentials, Git metadata, model weights,
@@ -19,7 +19,7 @@ Verify after extraction with `sha256sum -c SHA256SUMS` from the package root.
 | [LICENSE-MIT](LICENSE-MIT) | 1,079 |
 | [NOTICE](NOTICE) | 921 |
 | [PAPER_SETTINGS.md](PAPER_SETTINGS.md) | 3,374 |
-| [README.md](README.md) | 3,058 |
+| [README.md](README.md) | 3,101 |
 | [REPRODUCING.md](REPRODUCING.md) | 7,572 |
 | [SHA256SUMS](SHA256SUMS) | 9,412 |
 | [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) | 1,624 |
